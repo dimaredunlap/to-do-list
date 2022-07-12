@@ -37,6 +37,12 @@ ul {
     padding: 0%;
     color: gray;
 }
+li {
+    border-bottom: 1px solid rgba(183, 175, 175, 0.818);
+    padding-top: 4px;
+    padding-bottom: 9px;
+    padding-left: 10px;
+}
 .counter {
     background-color: white;
     color: gray;

@@ -16,13 +16,14 @@ const Home = () => {
       let newTask = onKeyDownEvent.target.value;
       const newList = [...ToDoList, newTask];
       setToDoList(newList);
-      newTask = "";
+      setInputValue("");
     }
   };
   const removeItem = (index) => {
     const removeTask = ToDoList.filter((item, i) => i != index);
     setToDoList(removeTask);
   };
+  const [inputValue, setInputValue] = useState("");
   const [isShown, setIsShown] = useState({
     state: false,
     index: 0,
@@ -46,7 +47,7 @@ const Home = () => {
   });
 
   return (
-    <div className="list container-fluid card">
+    <div className="container-fluid card">
       <h1>ToDos</h1>
       <input
         type="text"
@@ -54,12 +55,20 @@ const Home = () => {
         placeholder=" "
         id="fname"
         name="fname"
+		onChange={e => setInputValue(e.target.value)}
+		value={inputValue}
       />
       <div>
-        <ul>{list}</ul>
-      </div>
-      <div>
-        <ul className="counter">{list.length} item left</ul>
+        <ul>
+          {list}
+          <li>
+            {ToDoList.length > 1
+              ? `${ToDoList.length} items`
+              : ToDoList.length > 0
+              ? `${ToDoList.length} item`
+              : "No tasks, add a task"}
+          </li>
+        </ul>
       </div>
     </div>
   );
