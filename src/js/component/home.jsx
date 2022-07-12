@@ -43,9 +43,9 @@ const Home = () => {
 					{list}
 				</ul>
 			</div>
-			<div className="stacked-card-one"></div>
-			<div className="stacked-card-two"></div>
+			{list.length} task left
 		</div>
+		
 	);
 };
 

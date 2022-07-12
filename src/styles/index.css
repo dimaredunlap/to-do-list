@@ -2,9 +2,10 @@
     background-color: rgb(224, 162, 162);
     border: 3px rgb(233, 227, 227);
     width: 500px;
-    height: 450px;
+    height: auto;
     margin: auto;
     margin-top: 10px;
+    padding-block: 5px;
 }
 h1{
     color: rgba(248, 223, 227, 0.801);
