@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import Header from "./Header.jsx"
-import List from "./List.jsx"
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -8,22 +6,45 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 const Home = () => {
 
-	const [ InputValue, setInputValue ] = useState('');
+	const [ ToDoList, setToDoList] = useState(["Do Homework", "Do Laundry", "Walk the Dog"]);
 
-	const [ ToDoList, setToDoList] = useState([]);
-
-	const addItem = () => {
-		const newList = [...ToDoList]
-		newList.push(InputValue)
-		setToDoList(newList)
+	const addItem = (onKeyDownEvent) => {
+		if (
+			onKeyDownEvent.keyCode === 13
+		) {
+			let newTask = onKeyDownEvent.target.value
+			const newList = [...ToDoList, newTask]
+			setToDoList(newList)
+			newTask = ''
+		}
+		
 	}
+	const removeItem = (index) => {
+		const removeTask = ToDoList.filter((item,i)=> i != index);
+		setToDoList(removeTask);
+	};
+	const list = ToDoList.map((item,i) => {
+		return (
+			<div key={i}>
+				<li>
+					{item} 
+					<button onClick={() => removeItem(i)}>X</button>
+				</li>
+			</div>
+		)
+	})
 
 	return (
-		<div className="list container">
-			<Header />
-			<input type="text" onChange={e => setInputValue(e.target.value)} value={InputValue}/>
-			<button onClick={addItem}></button>
-			<List ToDoList = {ToDoList}/>
+		<div className="list container-fluid card">
+			<h1>ToDos</h1>
+			<input type="text" onKeyDown={addItem} placeholder=" " id="fname" name="fname"/>
+			<div>
+				<ul>
+					{list}
+				</ul>
+			</div>
+			<div className="stacked-card-one"></div>
+			<div className="stacked-card-two"></div>
 		</div>
 	);
 };
