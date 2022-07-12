@@ -43,7 +43,9 @@ const Home = () => {
 					{list}
 				</ul>
 			</div>
-			{list.length} task left
+			<div>
+				<ul className="counter">{list.length} item left</ul>
+			</div>
 		</div>
 		
 	);
